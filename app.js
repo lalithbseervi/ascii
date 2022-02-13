@@ -31,7 +31,7 @@ const getAverageRGB = (frame) => {
     };
 };
 
-const charset = '       .:-i|=+%O#@';
+const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&()/\\+<>';
 
 const processFrame = () => {
     const fontHeight = 12;
@@ -50,7 +50,7 @@ const processFrame = () => {
         outputContext.textBaseline = 'top';
         outputContext.font = `${fontHeight}px Monospace`;
 
-        const text = outputContext.measureText('     ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&()/\\+<>');
+        const text = outputContext.measureText('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&()/\\+<>');
         const fontWidth = parseInt(text.width);
 
         outputContext.clearRect(0, 0, width, height);
