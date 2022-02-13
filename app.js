@@ -34,7 +34,7 @@ const getAverageRGB = (frame) => {
 const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&()/\\+<>';
 
 const processFrame = () => {
-    const fontHeight = 5;
+    const fontHeight = 12;
     const {
         videoWidth: width, 
         videoHeight: height,
@@ -48,7 +48,7 @@ const processFrame = () => {
         hiddenContext.drawImage(video, 0, 0, width, height);
 
         outputContext.textBaseline = 'top';
-        outputContext.font = `${fontHeight}px Monospace`;
+        outputContext.font = `${fontHeight}px Consolas`;
 
         const text = outputContext.measureText('@');
         const fontWidth = parseInt(text.width);
