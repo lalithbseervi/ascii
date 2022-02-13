@@ -34,7 +34,7 @@ const getAverageRGB = (frame) => {
 const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&()/\\+<>';
 
 const processFrame = () => {
-    const fontHeight = 9;
+    const fontHeight = 5;
     const {
         videoWidth: width, 
         videoHeight: height,
