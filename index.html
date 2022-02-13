@@ -5,10 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ASCII</title>
+    <style>
+        .videoWrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+        }
+        .videoWrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
-<body id="video">
+<body>
+    <div class="videoWrapper">
+        <video id="video" width="640" height="480" autoplay></video>
+    </div>
     <script>
-        const density = '       .:-i|=+%O#@'
+        const density = '       .:-i|=+%O#@';
 
         var video = document.getElementById('video');
 
