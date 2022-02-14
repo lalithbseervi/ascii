@@ -44,7 +44,7 @@ startBtn.addEventListener('click', function() {
     let videoLocal = URL.createObjectURL(new Blob(blobsRecorded, { type: 'video/mp4' }));
     downloadLink.href = videoLocal;
 });
-    mediaRecorder.start(500);
+    mediaRecorder.start(989);
 });
 
 stopBtn.addEventListener('click', function() {
