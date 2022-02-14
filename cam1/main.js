@@ -40,6 +40,12 @@ play.addEventListener("click", function() {
     play.classList.remove("is-hidden");
 })
 
+pause.addEventListener("click", function () {
+    video.pause();
+    pause.classList.add("is-hidden");
+    play.classList.remove("is-hidden");
+});
+
 screenshot.addEventListener("click", function() {
     const img = document.createElement("img");
     canvas.width = video.videoWidth;
