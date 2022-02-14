@@ -35,13 +35,7 @@ camBtn.addEventListener('click', async function() {
 })
 
 startBtn.addEventListener('click', function() {
-    mediaRecorder = new MediaRecorder(cameraStream, {
-        type: 'video', 
-        mimeType: 'video/webm',
-        audioBitsPerSecond: 160000,
-        videoBitsPerSecond: 256000,
-        frameRate: 60  
-    });
+    mediaRecorder = new MediaRecorder(cameraStream, { mimeType: 'video/webm' });
 
     mediaRecorder.addEventListener('dataavailable', function(e) {
         blobsRecorded.push(e.data);
