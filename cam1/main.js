@@ -37,7 +37,7 @@ let videoStream;
 play.addEventListener("click", function() {
     video.play();
     play.classList.add("is-hidden");
-    play.classList.remove("is-hidden");
+    pause.classList.remove("is-hidden");
 })
 
 pause.addEventListener("click", function () {
