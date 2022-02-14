@@ -35,16 +35,22 @@ camBtn.addEventListener('click', async function() {
 })
 
 startBtn.addEventListener('click', function() {
-    mediaRecorder = new MediaRecorder(cameraStream, { mimeType: 'video/mp4' });
+    mediaRecorder = new MediaRecorder(cameraStream, {
+        type: 'video', 
+        mimeType: 'video/webm',
+        audioBitsPerSecond: 160000,
+        videoBitsPerSecond: 256000,
+        frameRate: 60  
+    });
 
     mediaRecorder.addEventListener('dataavailable', function(e) {
         blobsRecorded.push(e.data);
     })
     mediaRecorder.addEventListener('stop', function() {
-    let videoLocal = URL.createObjectURL(new Blob(blobsRecorded, { type: 'video/mp4' }));
+    let videoLocal = URL.createObjectURL(new Blob(blobsRecorded, { type: 'video/webm' }));
     downloadLink.href = videoLocal;
 });
-    mediaRecorder.start(989);
+    mediaRecorder.start(1000);
 });
 
 stopBtn.addEventListener('click', function() {
