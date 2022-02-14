@@ -8,6 +8,27 @@ let cameraStream = null;
 let mediaRecorder = null;
 let blobsRecorded = [];
 
+const constraints = {
+    audio: true,
+    video: {
+        width: {
+            min: 375,
+            ideal: 1280,
+            max: 2560,
+        },
+        height: {
+            min: 660,
+            ideal: 864,
+            max: 1440,
+        },
+        frameRate: {
+            min: 30,
+            ideal: 60,
+            max: 90
+        }
+    },
+};
+
 camBtn.addEventListener('click', async function() {
     cameraStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true});
     video.srcObject = cameraStream;
@@ -23,7 +44,7 @@ startBtn.addEventListener('click', function() {
     let videoLocal = URL.createObjectURL(new Blob(blobsRecorded, { type: 'video/webm' }));
     downloadLink.href = videoLocal;
 });
-    mediaRecorder.start(1000);
+    mediaRecorder.start(500);
 });
 
 stopBtn.addEventListener('click', function() {
