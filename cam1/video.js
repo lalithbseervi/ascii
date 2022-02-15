@@ -25,6 +25,16 @@ const constraints = {
             min: 30,
             ideal: 60,
             max: 90
+        },
+        audioBitsPerSecond: {
+          min: 160000,
+          ideal: 3200000,
+          max: 5600000  
+        },
+        videoBitsPerSecond: {
+          min: 800000,
+          ideal: 1260000,
+          max: 8400000  
         }
     },
 };
