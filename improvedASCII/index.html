@@ -29,6 +29,7 @@
         const video = document.createElement("video");
         const hiddenCanvas = document.createElement("canvas");
         const hiddenContext = hiddenCanvas.getContext("2d");
+
         const charset = '$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+<>';
         let fontHeight;
         let fontWidth;
@@ -94,7 +95,7 @@
             fontHeight = Math.floor(canvasHeight / video.videoHeight);
             fontWidth = fontHeight;
 
-            outputContext.font = `${fontHeight}px monospace`;
+            outputContext.font = `${fontHeight}px Consolas`;
             processFrame();
         };
         
