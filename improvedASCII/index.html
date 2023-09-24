@@ -77,24 +77,10 @@
 
             requestAnimationFrame(processFrame);
         };
-
+        
         const video = document.createElement("video");
         const hiddenCanvas = document.createElement("canvas");
         const hiddenContext = hiddenCanvas.getContext("2d");
-
-        navigator.mediaDevices
-            .getUserMedia({ video: true })
-            .then(function (stream) {
-                video.srcObject = stream;
-                video.play();
-                adjustCanvasSize();
-                requestAnimationFrame(processFrame);
-            })
-            .catch(function (err) {
-                console.error(err);
-            });
-
-        window.addEventListener("resize", adjustCanvasSize);
 
         const adjustCanvasSize = () => {
             const containerWidth = document.body.clientWidth;
@@ -111,6 +97,20 @@
             outputContext.font = `${fontHeight}px monospace`;
             processFrame();
         };
+        
+        navigator.mediaDevices
+            .getUserMedia({ video: true })
+            .then(function (stream) {
+                video.srcObject = stream;
+                video.play();
+                adjustCanvasSize();
+                requestAnimationFrame(processFrame);
+            })
+            .catch(function (err) {
+                console.error(err);
+            });
+
+        window.addEventListener("resize", adjustCanvasSize);
     </script>
 </body>
 </html>
