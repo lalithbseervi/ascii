@@ -6,8 +6,8 @@ const outputContext = outputCanvas.getContext('2d');
 
 const constraints = {
     video: {
-        width: 200,
-        height: 256,
+        width: 365,
+        height: 625,
     },
 };
 
@@ -34,7 +34,7 @@ const getAverageRGB = (frame) => {
 const charset = '$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+<>';
 
 const processFrame = () => {
-    const fontHeight = 6;
+    const fontHeight = 4;
     const {
         videoWidth: width, 
         videoHeight: height,
