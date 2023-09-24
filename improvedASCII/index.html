@@ -26,9 +26,13 @@
     <script>
         const outputCanvas = document.getElementById("output-canvas");
         const outputContext = outputCanvas.getContext("2d");
+        const video = document.createElement("video");
+        const hiddenCanvas = document.createElement("canvas");
+        const hiddenContext = hiddenCanvas.getContext("2d");
         const charset = '$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+<>';
         let fontHeight;
         let fontWidth;
+        
         const getAverageRGB = (frame) => {
           const length = frame.data.length / 4;
       
@@ -77,10 +81,6 @@
 
             window.requestAnimationFrame(processFrame);
         };
-        
-        const video = document.createElement("video");
-        const hiddenCanvas = document.createElement("canvas");
-        const hiddenContext = hiddenCanvas.getContext("2d");
 
         const adjustCanvasSize = () => {
             const containerWidth = document.body.clientWidth;
@@ -98,8 +98,7 @@
             processFrame();
         };
         
-        navigator.mediaDevices
-            .getUserMedia({ video: true })
+        navigator.mediaDevices.getUserMedia({ video: true })
             .then(function (stream) {
                 video.srcObject = stream;
                 video.play();
@@ -111,6 +110,10 @@
             });
 
         window.addEventListener("resize", adjustCanvasSize);
+        video.addEventListener('play', function () {
+            window.requestAnimationFrame(processFrame);
+            console.log('Live!');
+        });
     </script>
 </body>
 </html>
