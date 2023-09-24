@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam ASCII Art</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: black;
+        }
+
+        canvas {
+            max-width: 100%; /* Make the canvas responsive */
+            border: 2px solid white;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="output-canvas"></canvas>
+
+    <script>
+        const charset = '$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+<>';
+        let fontHeight;
+        let fontWidth;
+        const getAverageRGB = (frame) => {
+          const length = frame.data.length / 4;
+      
+          let r = 0;
+          let g = 0;
+          let b = 0;
+      
+          for (let i = 0; i < length; i++) {
+              r += frame.data[i * 4 + 0];
+              g += frame.data[i * 4 + 1];
+              b += frame.data[i * 4 + 2];
+          }
+      
+          return {
+              r: r / length,
+              g: g / length,
+              b: b / length,
+          };
+        };
+      
+        const processFrame = () => {
+            const { videoWidth: width, videoHeight: height } = video;
+
+            if (width && height) {
+                outputCanvas.width = width;
+                outputCanvas.height = height;
+
+                const text = outputContext.measureText("@");
+                fontWidth = text.width;
+                fontHeight = fontWidth; // Maintain aspect ratio
+
+                outputContext.clearRect(0, 0, width, height);
+
+                for (let y = 0; y < height; y += fontHeight) {
+                    for (let x = 0; x < width; x += fontWidth) {
+                        const frameSection = hiddenContext.getImageData(x, y, fontWidth, fontHeight);
+                        const { r, g, b } = getAverageRGB(frameSection);
+                        const charIndex = Math.round((r / 255) * (charset.length - 1));
+                        const char = charset.charAt(charIndex);
+
+                        outputContext.fillStyle = `rgb(${r}, ${g}, ${b})`;
+                        outputContext.fillText(char, x, y + fontHeight);
+                    }
+                }
+            }
+
+            requestAnimationFrame(processFrame);
+        };
+
+        const video = document.createElement("video");
+        const hiddenCanvas = document.createElement("canvas");
+        const hiddenContext = hiddenCanvas.getContext("2d");
+
+        navigator.mediaDevices
+            .getUserMedia({ video: true })
+            .then(function (stream) {
+                video.srcObject = stream;
+                video.play();
+                adjustCanvasSize();
+                requestAnimationFrame(processFrame);
+            })
+            .catch(function (err) {
+                console.error(err);
+            });
+
+        window.addEventListener("resize", adjustCanvasSize);
+
+        const adjustCanvasSize = () => {
+            const containerWidth = document.body.clientWidth;
+            const containerHeight = document.body.clientHeight;
+
+            const canvasWidth = Math.floor(containerWidth);
+            const canvasHeight = Math.floor((canvasWidth / video.videoWidth) * video.videoHeight);
+
+            outputCanvas.width = canvasWidth;
+            outputCanvas.height = canvasHeight;
+            fontHeight = Math.floor(canvasHeight / video.videoHeight);
+            fontWidth = fontHeight;
+
+            outputContext.font = `${fontHeight}px monospace`;
+            processFrame();
+        };
+    </script>
+</body>
+</html>
