@@ -9,6 +9,6 @@ canvas#hidden-canvas {
 
 canvas#output-canvas {
     background-color: #000000;
-    max-width: 100%;
-    height: auto;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
 }
