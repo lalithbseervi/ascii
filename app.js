@@ -31,10 +31,10 @@ const getAverageRGB = (frame) => {
     };
 };
 
-const charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&()/\\+<>';
+const charset = '$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+<>';
 
 const processFrame = () => {
-    const fontHeight = 12;
+    const fontHeight = 8;
     const {
         videoWidth: width, 
         videoHeight: height,
