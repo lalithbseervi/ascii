@@ -5,9 +5,23 @@ const hiddenContext = hiddenCanvas.getContext('2d');
 const outputContext = outputCanvas.getContext('2d');
 
 const constraints = {
+    audio: false,
     video: {
-        width: 365,
-        height: 625,
+        width: {
+             min: 375,
+            width: 365,
+            max: 2560,   
+        },
+        height: {
+            min: 660,
+            ideal: 864,
+            max: 1440,
+        },
+        frameRate: {
+            min: 15,
+            ideal: 30,
+            max: 60,
+        },
     },
 };
 
