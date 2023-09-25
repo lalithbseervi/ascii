@@ -8,7 +8,7 @@ const constraints = {
     audio: false,
     video: {
         width: {
-             min: 375,
+            min: 375,
             width: 365,
             max: 2560,   
         },
@@ -48,7 +48,7 @@ const getAverageRGB = (frame) => {
 const charset = '$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+<>';
 
 const processFrame = () => {
-    const fontHeight = 7;
+    const fontHeight = 10;
     const {
         videoWidth: width, 
         videoHeight: height,
